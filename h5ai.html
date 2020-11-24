@@ -3,7 +3,7 @@
 <head>
     <title><!--Title--></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <script src="//at.alicdn.com/t/font_2214617_hm6j4jkt7wd.js"></script>
+    <script src="//at.alicdn.com/t/font_2214617_znxillvbx1f.js"></script>
     <style>
         * {margin: 0;padding: 0;border: 0;box-sizing: border-box; font-family: "Ubuntu" ,"PingFang SC", "Microsoft YaHei";color:rgba(0,0,0,0.87)}
         html,body {height: 100%;}
@@ -22,13 +22,14 @@
         a:hover {color:#42a5f5}
         b {font-weight: normal;}
         i {font-style: normal;}
+        ul,li {list-style-type: none;}
         .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display: block;}
-        header {height: 48px;line-height: 48px;background: #fafafa;border-bottom: 1px solid rgba(0,0,0,0.05);font-size: 0;padding: 0 16px;display: flex;flex-wrap: nowrap;}
-        h2 {height:48px;margin-right: 12px;white-space: nowrap;position: relative;}
-        h2::after {content: "";position: absolute;right: -36px;top: 0;width: 36px;height: 47px;background-image: linear-gradient(to right , #fafafa, rgba(255,255,255,0));}
+        header {height: 48px;line-height: 48px;background: #fafafa;border-bottom: 1px solid rgba(0,0,0,0.05);font-size: 0;display: flex;flex-wrap: nowrap;}
+        h2 {height:48px;margin-right: 12px;white-space: nowrap;position: relative;padding-left: 16px;}
+        h2::after {content: "";position: absolute;right: -48px;top: 0;width: 36px;height: 47px;background-image: linear-gradient(to right , #fafafa, rgba(255,255,255,0));}
         h2 a {font-size: 16px;}
         .bread-wrap {width: 100%;overflow-y: hidden;overflow-x: hidden;}
-        .bread-wrap::after {content: "";position: fixed;right: 16px;top: 0;width: 36px;height: 47px;background-image: linear-gradient(to right , rgba(255,255,255,0), #fafafa);}
+        .bread-wrap::after {content: "";position: fixed;right: 0;top: 0;width: 36px;height: 47px;background-image: linear-gradient(to right , rgba(255,255,255,0), #fafafa);}
         .bread-wrap:hover {overflow-x: auto;}
         .bread {display: inline-block;padding: 0 24px;white-space: nowrap}
         .bread {font-size: 15px;font-weight: normal;}
@@ -37,27 +38,60 @@
         .bread a {vertical-align: top;}
         .bread a:last-child {font-weight: bold;}
 
+        <!--AdminStart-->
+        .upload-trigger {height: 47px;width: 48px;cursor: pointer;text-align: center;transition: all .2s ease-in-out;}
+        .upload-trigger .btn {width: 48px;height: 47px;}
+        .upload-trigger:hover {background-color: #eee;}
+        .bread-wrap::after {right: 47px;}
+        .right-sidebar {width: 252px;height:calc(100% - 47px);padding:16px 0 16px 16px;position: absolute;top: 47px;right: 0;background: #fafafa;border-left: 1px solid rgba(0,0,0,0.05);}
+        .right-sidebar h5 {margin: 2px 0 6px 0;font-size: 14px;line-height: 36px;}
+        .typeList {font-size: 0;}
+        .typeList span {display: inline-block;width: 48px;height: 48px;border-radius: 2px;margin:4px;transition: all .2s ease-in-out;text-align: center;color: rgba(0,0,0,0.87);cursor: pointer;outline: none;vertical-align: top;}
+        .typeList span.active {background: rgba(0,0,0,0.03);box-shadow: inset 0 0 4px 0 rgba(0,0,0,0.4);}
+        .typeList .key {display: inline-block;width: 60px;height: 48px;line-height: 48px; text-align: center;transition: all .2s ease-in-out;font-size: 14px;margin:4px;vertical-align: top;cursor: pointer;background-color: #eee;}
+        .typeList .key:hover {background-color: #d9d9d9;}
+        .uploadList {height: calc(100% - 150px);overflow-y: auto;}
+        .progress-bar {width: 24px;height: 24px;}
+        .progress-bar .prg {transform-origin: center;transform: rotate(-90deg);transition: 0.2s;}
+        .progress-list {border-top: 1px solid rgba(0,0,0,0.05);padding: 10px 0;line-height: 23px;height: 46px;font-size: 13px;}
+        .progress-list svg {margin-right: 6px;vertical-align: top;}
+        .progress-list svg text {dominant-baseline:middle;text-anchor:middle;}
+        .progress-list span {display: inline-block;width: 116px;vertical-align: top;}
+        .progress-list s {text-decoration: none;font-size: 12px;display: inline-block;vertical-align: top;width: 70px; text-align: right;}
+        <!--AdminEnd-->
+
         .content {height: calc(100% - 48px);overflow-y: auto;}
         .list {padding:20px 32px;}
         .list-table {table-layout: fixed;border-collapse:collapse;width: 100%;font-size: 13px;}
         .list-table tr {border-bottom: 1px solid rgba(0,0,0,0.07);margin: 0 24px;}
         .list-table tr:not(:first-child):hover {background: #fafafa;}
-        .list-table th {height: 50px;opacity: .4;}
+        .list-table th {height: 46px;}
+
+        .list-table .th-name {display: inline-block;width: 50px;}
         .list-table td {height: 35px;}
-        .list-table .file-type {margin-right: 16px;vertical-align: top;}
+        .list-table td s {text-decoration: none;} 
+        .list-table .file-type {margin-right: 16px;}
         .list-table .name {margin-left: 24px;}
         .list-table .size {margin-right: 24px;}
 
         @media screen and (max-width:500px)	{		
             .list {padding:12px}
-			.list-table th:not(:first-child), .list-table td:not(:first-child) {display: none;}
+			.list-table th:not(:first-child):not(:last-child), .list-table td:not(:first-child):not(:last-child) {display: none;}
 			.list-table .name {margin-left: 0;}
             .bread-wrap {overflow-x: auto;}
 		}
         @media screen and (min-width:500px)	{
             .bread-wrap::-webkit-scrollbar {height: 8px;}
             .bread-wrap::-webkit-scrollbar-thumb {background: #eee;border-radius: 4px;}
-		}
+        }
+        
+        <!--EncryptedStart-->
+        .view-password {padding: 24px;}
+
+        input[type="password"] {padding:0 8px;height:35px; border: 1px solid rgba(0,0,0,0.07);vertical-align: top;}
+        input[type="submit"] {padding:0 14px; height: 35px; background-color: #eee;cursor: pointer;vertical-align: top;}
+        <!--EncryptedEnd-->
+        
     </style>
 </head>
 
@@ -72,16 +106,41 @@
                 <!--PathArrayEnd-->
             </div>
         </div>
+        <!--AdminStart-->
+        <div class="upload-trigger">
+            <div class="btn" onclick="showHideSiderBar();">
+                <svg id="triggerIcon" class="icon" aria-hidden="true"><use xlink:href="#iconupload"></use></svg>
+            </div>
+        </div>
+
+        <div id="rightSidebar" class="right-sidebar" style="display: none;">
+            <h5>上传类型</h5>
+            <div class="typeList" id="upLoadTypeList">
+                <span title="文件" class="active" onclick="changeFileType('file')"><svg class="icon" aria-hidden="true"><use xlink:href="#iconfile"></use></svg></span>
+                <span title="文件夹" onclick="changeFileType('folder')"><svg class="icon" aria-hidden="true"><use xlink:href="#iconfolder"></use></svg></span>
+                <i class="key" onclick="triggerClick();">选择</i>
+                <input hidden class="real-btn" id="upload_file" type="file" name="upload_filename" multiple="multiple" onchange="upLoad();">
+            </div>
+            <h5 id="upLoadTitle" style="display: none;">上传列表</h5>
+            <div class="uploadList">
+                <ul id="uploadWrap"></ul>
+            </div>
+        </div>
+
+        <!--AdminEnd-->
         
     </header>
 
     <div class="content">
         <div class="list">
-            <table class="list-table">
+            <table class="list-table" id="listTable">
                 <tr>
-                    <th align="left"><span class="name">文件</span></th>
+                    <th align="left"><span class="name th-name">文件</span></th>
                     <th width="146" align="right">修改时间</th>
                     <th width="108" align="right"><span class="size">大小</span></th>
+                    <!--AdminStart-->
+                    <th width="46" align="center">操作</th>
+                    <!--AdminEnd-->
                 </tr>
 
                 <!--BackArrowStart-->
@@ -97,23 +156,39 @@
 <!--ListStart-->
 <!--IsFolderStart-->
 <!--FolderListStart-->
-            <tr>
-                <td><b class="ellipsis"><a class="name" href="<!--FileEncodeReplaceUrl-->/"><svg class="icon file-type" aria-hidden="true"><use xlink:href="#iconfolder"></use></svg><!--FileEncodeReplaceName--></a></b></td>
+            <tr id="tr<!--filenum-->">
+                <td><b class="ellipsis"><a title="" class="name" href="<!--FileEncodeReplaceUrl-->/"><svg class="icon file-type" aria-hidden="true"><use xlink:href="#iconfolder"></use></svg><s><!--FileEncodeReplaceName--></s></a></b></td>
                 <td align="right"><!--lastModifiedDateTime--></td>
                 <td align="right"><span class="size"><!--size--></span></td>
+                <!--AdminStart-->
+                <td align="center"><a href="javascript:;" onclick="deleteFile(<!--filenum-->);"><svg class="icon" aria-hidden="true"><use xlink:href="#iconshanchu"></use></svg></a></td>
+                <!--AdminEnd-->
             </tr>
 <!--FolderListEnd-->
 <!--FileListStart-->
-            <tr>
-                <td><b class="ellipsis"><a class="name file-icon" href="<!--FileEncodeReplaceUrl-->/"><!--FileEncodeReplaceName--></a></b></td>
+            <tr id="tr<!--filenum-->">
+                <td><b class="ellipsis"><a class="name file-icon" href="<!--FileEncodeReplaceUrl-->/"><s><!--FileEncodeReplaceName--></s></a></b></td>
                 <td align="right"><!--lastModifiedDateTime--></td>
                 <td align="right"><span class="size"><!--size--></span></td>
+                <!--AdminStart-->
+                <td align="center"><a href="javascript:;" onclick="deleteFile(<!--filenum-->);"><svg class="icon" aria-hidden="true"><use xlink:href="#iconshanchu"></use></svg></a></td>
+                <!--AdminEnd-->
             </tr>
 <!--FileListEnd-->
 <!--IsFolderEnd-->
 <!--ListEnd-->
 
             </table>
+            <!--EncryptedStart-->
+                
+            <div class="view-password">
+                <center>
+                    <form action="" method="post">
+                    <input name="password1" type="password" placeholder="<!--constStr@InputPassword-->"><input type="submit" value="<!--constStr@Submit-->">
+                    </form>
+                </center>
+                </div>
+            <!--EncryptedEnd-->
         </div>
     </div>
 
@@ -174,7 +249,7 @@
 
         document.querySelectorAll('.file-icon').forEach(function (e) {
             var fileName = e.innerText;
-            var type = fileName.substring(fileName.lastIndexOf("."),fileName.length).substr(1);
+            var type = fileName.substring(fileName.lastIndexOf("."),fileName.length).substr(1).toLowerCase();
             if(typeList[type]) {
                 e.innerHTML = '<svg class="icon file-type" aria-hidden="true"><use xlink:href="#icon' + typeList[type] + '"></use></svg>' + e.innerHTML;
             } else {
@@ -192,6 +267,250 @@
             var backHtml =backEl.innerHTML;
             backEl.innerHTML = backHtml + breadNodes[breadNodes.length-2].innerText;
         }
+
+        <!--AdminStart-->
+        var siderEl = document.getElementById('rightSidebar');
+        var siDerIcon = document.getElementById('triggerIcon').getElementsByTagName('use')[0];
+        function showHideSiderBar() {
+
+            var siderStatus = siderEl.style.display; 
+            siderStatus == 'none' ? (siderEl.style.display = 'block', siDerIcon.setAttribute('xlink:href', '#iconright')) : (siderEl.style.display = 'none', siDerIcon.setAttribute('xlink:href', '#iconupload'));
+        }
+        <!--AdminEnd-->
+
+        <!--UploadJsStart-->
+
+        var directory = "";
+
+        function changeFileType(fileType) {
+            var typeItems = document.getElementById('upLoadTypeList').getElementsByTagName('span');
+            for (var i = 0; i < typeItems.length; i++) {
+                typeItems[i].removeAttribute('class');
+            }
+
+            fileType == 'file' ? directory = "" : directory = 1;
+            var e = window.event;
+            e.currentTarget.setAttribute('class', 'active');
+            document.getElementById('upload_file').webkitdirectory = directory;
+        }
+    
+        function triggerClick() {
+            document.getElementById('upload_file').click();
+        }
+
+
+    function upLoad() {
+        var files = document.getElementById('upload_file').files;
+        document.getElementById('upLoadTitle').style.display = 'block';
+        var i = 0;
+        getuplink(i);
+
+        function getuplink(i, r = 0) {
+            var file = files[i];
+            if(!file) return;
+            if(r == 0) {
+                var progressNum = 0;
+                var fileDom = document.createElement('li');
+                document.getElementById('uploadWrap').appendChild(fileDom);
+                fileDom.setAttribute('class', 'progress-list');
+                var svg1 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                fileDom.appendChild(svg1);
+                svg1.setAttribute('class', 'progress-bar');
+                svg1.innerHTML = '<circle cx="12" cy="12" r="10" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="4" stroke-linecap="round"></circle><circle class="prg" id="J_demo3" cx="12" cy="12" r="10" fill="none" stroke="#515151" stroke-width="4" stroke-dasharray="' + progressNum + ',10000"></circle><text x="12" y="13" fill="#515151" font-size="10">' + progressNum + '</text>';
+                var nameDom = document.createElement('span');
+                nameDom.setAttribute('class', 'ellipsis');
+                fileDom.appendChild(nameDom);
+                nameDom.innerHTML = file.webkitRelativePath || file.name;
+            }
+            var speedDom = document.createElement('s');
+            
+            if (file.size > 100*1024*1024*1024) {         
+                speedDom.innerHTML = '[文件过大]';
+                fileDom.appendChild(speedDom);
+                svg1.getElementsByTagName('text')[0].innerHTML = '✖';
+                return;
+            }
+
+            var upbigfilename = encodeURIComponent((file.webkitRelativePath || file.name));
+
+            speedDom.innerHTML = '准备中...';
+            fileDom.appendChild(speedDom);
+            var xhr1 = new XMLHttpRequest();
+            xhr1.open("GET", '?action=upbigfile&upbigfilename='+ upbigfilename +'&filesize='+ file.size +'&lastModified='+ file.lastModified);
+            xhr1.setRequestHeader('x-requested-with','XMLHttpRequest');
+            xhr1.onprogress = function(e){
+                // td2.innerHTML+='.';
+            }
+            xhr1.onload = function(e){
+                console.log(xhr1.status+xhr1.responseText);
+                //td2.innerHTML='<font color="red">'+xhr1.responseText+'</font>';
+                if (xhr1.status==409) {
+                    // td2.innerHTML='nameAlreadyExists';
+                    svg1.getElementsByTagName('text')[0].innerHTML = '✖';
+                    fileDom.getElementsByTagName('s')[0].innerHTML = '[名称重复]'
+                }
+                if (xhr1.status==200) {
+                    console.log(xhr1.responseText);
+                    if (xhr1.responseText=='') {
+                        getuplink(i,1);
+                        return;
+                    }
+                    var html=JSON.parse(xhr1.responseText);
+                    if (!html['uploadUrl']) {
+                        svg1.getElementsByTagName('text')[0].innerHTML = '✖';
+                        fileDom.getElementsByTagName('s')[0].innerHTML = '[错误]'
+                    } else {
+                        startUploadFile(file,html['uploadUrl'], upbigfilename, svg1, fileDom);
+                    }
+                }
+                if (i<files.length-1) {
+                    i++;
+                    getuplink(i);
+                }
+            }
+            xhr1.send(null);
+        } 
+    }
+
+
+    function startUploadFile(file,url,filename,svg1, fileDom){
+        var reader = new FileReader();
+        var StartTime;
+        var EndTime;
+        if(!!file){
+            var asize = 0;
+            var totalsize = file.size;
+            var xhr2 = new XMLHttpRequest();
+            xhr2.open("GET", url);
+            xhr2.send(null);
+            xhr2.onload = function(e){
+                console.log(xhr2);
+                if (xhr2.status==200) {
+
+
+                    var html = JSON.parse(xhr2.responseText);
+                    var a = html['nextExpectedRanges'][0];
+                    newstartsize = Number( a.slice(0,a.indexOf("-")) );
+                    StartTime = new Date();
+
+                    asize = newstartsize;
+
+                    var chunksize=5*1024*1024; // chunk size, max 60M. 每小块上传大小，最大60M，微软建议10M
+                    if (totalsize>200*1024*1024) chunksize=10*1024*1024;
+
+                    function readblob(start) {
+                        var end=start+chunksize;
+                        var blob = file.slice(start,end);
+                        reader.readAsArrayBuffer(blob);
+                    }
+                    readblob(asize);
+
+                    reader.onload = function(e){
+                        console.log(e);
+                        var binary = this.result;
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("PUT", url, true);
+                        bsize = asize + e.loaded-1;
+                        xhr.setRequestHeader('Content-Range', 'bytes ' + asize + '-' + bsize +'/'+ totalsize);
+                        xhr.upload.onprogress = function(e){
+                            if (e.lengthComputable) {
+                                var tmptime = new Date();
+                                var tmpspeed = e.loaded * 1000 / (tmptime.getTime() - C_starttime.getTime());
+                                fileDom.getElementsByTagName('s')[0].innerHTML = size_format(tmpspeed) + '/s';;
+                                var showNum = ((asize + e.loaded) / totalsize * 100).toFixed(0);
+                                var num = ((asize + e.loaded) / totalsize * 100 * 0.63).toFixed(0);
+                                svg1.getElementsByTagName('circle')[1].setAttribute('stroke-dasharray', num + ', 1000');
+                                if(showNum == 100) {
+                                    svg1.getElementsByTagName('text')[0].innerHTML = '99';
+                                } else {
+                                    svg1.getElementsByTagName('text')[0].innerHTML = showNum;
+                                }
+                            }
+                            
+                        }
+                        var C_starttime = new Date();
+                        xhr.onload = function(e){
+                            var tmptime = new Date();
+                            if (xhr.status<500) {
+                            var response=JSON.parse(xhr.responseText);
+                            if (response['size']>0) {
+                                // contain size, upload finish. 有size说明是最终返回，上传结束
+                                if (totalsize>10*1024*1024) {
+                                    var xhr3 = new XMLHttpRequest();
+                                    xhr3.open("GET", '?action=del_upload_cache&filelastModified='+file.lastModified+'&filesize='+file.size+'&filename='+filename);
+                                    xhr3.setRequestHeader('x-requested-with','XMLHttpRequest');
+                                    xhr3.send(null);
+                                    xhr3.onload = function(e){
+
+                                        console.log(xhr3.responseText+','+xhr3.status);
+                                    }
+                                }
+                                EndTime = new Date();
+                                svg1.getElementsByTagName('text')[0].innerHTML = '✔';
+                                    var tr = document.createElement('tr');
+                                    document.getElementById('listTable').appendChild(tr);
+                                    tr.innerHTML = '<td><b class="ellipsis"><a class="name file-icon" href="/' + filename + '/"><svg class="icon file-type" aria-hidden="true"><use xlink:href="#iconnew-f"></use></svg><s>' + filename + '</s></a></b></td><td align="right">' + tmptime.toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'') + '</td><td align="right"><span class="size">' + size_format(totalsize) + '</span></td><td></td>';
+                                fileDom.getElementsByTagName('s')[0].innerHTML = size_format(totalsize*1000/(EndTime.getTime()-StartTime.getTime())) + '/s';
+                            } else {
+                                if (!response['nextExpectedRanges']) {
+                                    svg1.getElementsByTagName('text')[0].innerHTML = '✖';
+                                } else {
+                                    var a=response['nextExpectedRanges'][0];
+                                    asize=Number( a.slice(0,a.indexOf("-")) );
+                                    readblob(asize);
+                                }
+                            }}
+                        }
+                        xhr.send(binary);
+                    }
+                } 
+            }
+        }
+    }
+
+    function size_format(num) {
+        if (num>1024) {
+            num=num/1024;
+        } else {
+            return num.toFixed(2) + ' B';
+        }
+        if (num>1024) {
+            num=num/1024;
+        } else {
+            return num.toFixed(2) + ' K';
+        }
+        if (num>1024) {
+            num=num/1024;
+        } else {
+            return num.toFixed(2) + ' M';
+        }
+        return num.toFixed(2) + ' G';
+    }
+
+    function deleteFile(num) {
+        var name = document.getElementById('tr' + num).getElementsByTagName('s')[0].innerText;
+        var deleteConfirm = confirm('是否确认删除 "' + name + '"?');
+        if(deleteConfirm) {
+            var xhr = new XMLHttpRequest();
+            var paramStr = '?delete_sid=' + num + '&delete_name=' + name + '&operate_action=确认';
+            xhr.open("GET", paramStr);
+            xhr.setRequestHeader('x-requested-with','XMLHttpRequest');
+            xhr.send(null);
+            xhr.onload = function(e){
+                var html;
+                if (xhr.status < 300) {
+                    console.log(xhr.status+','+xhr.responseText);
+                    document.getElementById('tr' + num).remove();
+                } else alert(xhr.status+'\n'+xhr.responseText);
+            }
+        }
+    }
+
+
+
+    
+    
+<!--UploadJsEnd-->
 
     </script>
 </body>
